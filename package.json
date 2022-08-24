@@ -1,0 +1,22 @@
+{
+  "name": "more-of-the-same",
+  "version": "1.0.0",
+  "private": true,
+  "description": "more-of-the-same",
+  "author": "gi-lom",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "gatsby": "^4.21.1",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  }
+}
