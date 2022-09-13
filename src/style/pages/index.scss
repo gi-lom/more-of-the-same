@@ -1,0 +1,14 @@
+@use '../_base';
+@use '../mixins.scss' as mixins;
+@use '../variables.scss' as v;
+
+img#index-head {
+  float: left;
+  width: 50%;
+  height: 50%;
+}
+
+#main-part {
+  float: right;
+  background-color: green;
+}

@@ -1,0 +1,84 @@
+import React from "react";
+
+import setLocalStorage from "../modules/storage";
+import songSearch from "../modules/song-search";
+import handleError from "../modules/error";
+
+import SearchResults from "./elements/searchResults";
+import Footer from "./elements/header";
+
+class Search extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "",
+            offset: 0,
+            search: []
+        }
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.changeOffset = this.changeOffset.bind(this)
+        this.getSongs = this.getSongs.bind(this)
+        this.handleKeyDown = this.handleKeyDown.bind(this)
+    }
+
+    componentWillMount() {
+        setLocalStorage()
+    }
+
+    handleChange(e) {
+        e.preventDefault()
+        this.setState({value: e.target.value})
+    }
+
+    handleSubmit() {
+        this.setState({offset: 0})
+        this.getSongs()
+    }
+
+    handleKeyDown(e) {
+        if (e.key === 'Enter')
+            this.handleSubmit()
+    }
+
+    changeOffset(isNext) {
+        let newOffset = isNext ? this.state.offset+10 : this.state.offset-10
+        this.state.offset = newOffset
+        this.getSongs();
+    }
+  
+    getSongs() {
+        if (this.state.value !== "") {
+            songSearch(this.state.value, this.state.offset)
+            .then((songs) => {
+                if (songs !== null) {
+                    if ('error' in songs)
+                        handleError()
+                    this.setState({search: songs})
+                }
+            });
+        }
+    }
+
+    render() {
+        return(
+            <main>
+                <title>More Of The Same</title>
+  
+                <div id="search-bar">
+                    <input type="text" value={this.state.value} onChange={this.handleChange} onKeyDown={this.handleKeyDown} placeholder="Type a song, an artist, or an album's name" />
+                    <button onClick={(this.handleSubmit)}> SEARCH </button>
+                </div>
+
+                <SearchResults songs={this.state.search} value={this.state.value} changeOffset={this.changeOffset} toConfig={this.toConfig} />
+
+                <Footer />
+
+            </main>
+        )
+    }
+  
+  }
+  
+  export default Search

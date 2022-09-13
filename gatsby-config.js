@@ -3,5 +3,5 @@ module.exports = {
     title: `More Of The Same`,
     siteUrl: `https://www.yourdomain.tld`,
   },
-  plugins: [],
+  plugins: ['gatsby-plugin-sass'],
 }

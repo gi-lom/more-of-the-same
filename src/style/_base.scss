@@ -1,0 +1,43 @@
+@use 'mixins.scss' as mixins;
+@use 'variables.scss' as v;
+
+body {
+    font-family: v.$text-font;
+    background-color: v.$background-color;
+    color: v.$text-color;
+    font-weight: 800;
+    text-align: center;
+}
+
+.cookie-alert {
+    text-align: center;
+    font-family: v.$text-font;
+    font-size: v.$disclaimer-size;
+    margin-bottom: 150px;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-family: v.$text-font;
+    font-size: v.$disclaimer-size;
+    padding: 15px 0;
+    background-color: #4C4C7A;
+    color: white;
+    a {
+        color: #E6E6FA;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    body {
+        width: 1920px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+}
