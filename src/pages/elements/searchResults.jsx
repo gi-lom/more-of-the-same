@@ -38,26 +38,29 @@ const SongList = (songs) => {
 
 const SearchResults = (props) => {
     const songs = props.songs
-    if (songs !== undefined && songs !== null && typeof songs.tracks !== undefined && songs.tracks.items !== undefined) {
-        if (songs.tracks.items.length == 0)
-            return (
-                <>
-                <div className="generic-search-background">
-                    <img src={SearchNofound} />
-                    <div className="generic-search-title">
-                        Nothing found
+    if (typeof window !== "undefined" && window ) {
+        if (songs !== undefined && songs !== null) {
+            if (songs.tracks.items.length == 0)
+                return (
+                    <>
+                        <div className="generic-search-background">
+                            <img src={SearchNofound} />
+                            <div className="generic-search-title">
+                                Nothing found
+                            </div>
+                        </div>
+                    </>
+                )
+            else {
+                const list = SongList(songs)
+                return (
+                    <div id="search-results-box">
+                        {list}
                     </div>
-                </div>
-                </>
-            )
-        else {
-            const list = SongList(songs)
-            return (
-                <div id="search-results-box">
-                    {list}
-                </div>
-            )
+                )
+            }
         }
+        else return <div />
     }
     else return <div />
     
