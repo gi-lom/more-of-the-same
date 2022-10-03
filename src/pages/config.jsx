@@ -24,7 +24,7 @@ class Config extends React.Component {
     }
 
     render() {
-        const song = typeof this.props.location.state.song === 'undefined' ? this.props.location.state.song : null
+        const song = this.props.location.state.song ? this.props.location.state.song : null
         if (song === null)
             return (
             <div>
