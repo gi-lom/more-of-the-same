@@ -44,6 +44,13 @@ class Config extends React.Component {
         console.log("aa")
         console.log(this.state)
         const song = typeof window === "undefined" ? null : JSON.parse(sessionStorage.getItem("song"))
+        if (song === null)
+            return(
+                <main>
+                    <title>More Of The Same</title>
+                    <Header />
+                </main>
+            )
         return (
             <main>
                 <title>More Of The Same</title>
