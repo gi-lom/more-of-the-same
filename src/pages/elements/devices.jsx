@@ -26,53 +26,54 @@ const prepareDevice = (deviceId, songs) => {
 
 const DeviceButtons = (devices, songs) => {
   let buttonList = [];
-  for (let i = 0; i < devices.length; i++) {
-    let img = generic;
-    switch (devices[i].type) {
-      case "Automobile":
-        img = Automobile;
-        break;
-      case "Cast_audio":
-        img = Cast_audio;
-        break;
-      case "Cast_video":
-        img = Cast_video;
-        break;
-      case "Computer":
-        img = Computer;
-        break;
-      case "Game_console":
-        img = Game_console;
-        break;
-      case "Smartphone":
-        img = Smartphone;
-        break;
-      case "Speaker":
-        img = Speaker;
-        break;
-      case "Tablet":
-        img = Tablet;
-        break;
-      case "Tv":
-        img = Tv;
-        break;
+  if (devices !== undefined)
+    for (let i = 0; i < devices.length; i++) {
+      let img = generic;
+      switch (devices[i].type) {
+        case "Automobile":
+          img = Automobile;
+          break;
+        case "Cast_audio":
+          img = Cast_audio;
+          break;
+        case "Cast_video":
+          img = Cast_video;
+          break;
+        case "Computer":
+          img = Computer;
+          break;
+        case "Game_console":
+          img = Game_console;
+          break;
+        case "Smartphone":
+          img = Smartphone;
+          break;
+        case "Speaker":
+          img = Speaker;
+          break;
+        case "Tablet":
+          img = Tablet;
+          break;
+        case "Tv":
+          img = Tv;
+          break;
+      }
+      buttonList.push(
+        <button
+          onClick={() => prepareDevice(devices[i].id, songs)}
+          className="device-button"
+        >
+          <div className="image-container">
+            <img src={img} className="svg not-hover" />
+            <img src={img} className="svg hover" />
+          </div>
+          <div className="device-details">
+            <div className="device-type"> {devices[i].type} </div>
+            <div className="device-name"> {devices[i].name} </div>
+          </div>
+        </button>
+      );
     }
-    buttonList.push(
-      <button
-        onClick={() => prepareDevice(devices[i].id, songs)}
-        className="device-button"
-      >
-        <div className="image-container">
-          <img src={img} className="svg not-hover" />
-          <img src={img} className="svg hover" />
-        </div>
-        <div className="device-details">
-          <div className="device-type"> {devices[i].type} </div>
-          <div className="device-name"> {devices[i].name} </div>
-        </div>
-      </button>
-    );
-  }
   return <div id="devices-list">{buttonList}</div>;
 };
 
@@ -82,7 +83,8 @@ const Devices = (props) => {
     <div id="devices">
       <div id="devices-title">
         Select a device to start playing. <br />
-        If you don't see the one you want to use, open a Spotify session there and refresh.
+        If you don't see the one you want to use, open a Spotify session there
+        and refresh.
       </div>
       {deviceButtons}
     </div>
