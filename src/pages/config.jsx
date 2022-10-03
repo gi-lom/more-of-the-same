@@ -41,8 +41,6 @@ class Config extends React.Component {
     }
 
     render() {
-        console.log("aa")
-        console.log(this.state)
         const song = typeof window === "undefined" ? null : JSON.parse(sessionStorage.getItem("song"))
         if (song === null)
             return(
