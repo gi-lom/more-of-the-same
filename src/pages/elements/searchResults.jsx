@@ -38,7 +38,7 @@ const SongList = (songs) => {
 
 const SearchResults = (props) => {
     const songs = props.songs
-    if (songs !== null && typeof songs.tracks === undefined) {
+    if (songs !== undefined && songs !== null && typeof songs.tracks === undefined) {
         if (songs.tracks.items.length == 0)
             return (
                 <>
