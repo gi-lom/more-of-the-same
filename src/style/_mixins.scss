@@ -1,17 +1,9 @@
 @use 'variables.scss' as v;
 
-@mixin login-button($col) {
-    background-color: $col;
-    margin: auto;
-    font-family: v.$title-font;
-    font-size: 200%;
-    text-align: center;
-    height: v.$button-height;
-    width: v.$button-width;
-    border-radius: 50%;
-    border: 0px;
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
+@mixin small-button($width) {
+    left: 120px;
+    width: $width;
+    height: 25px;
+    font-size: 12px;
+    letter-spacing: 3px;
 }

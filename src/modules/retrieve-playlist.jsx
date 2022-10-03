@@ -34,8 +34,8 @@ const elaborateGenres = (genres_raw) => {
         uniqGenres.push(genres[i])
     }
     uniqGenres.sort( (a, b) => frequencies[b] - frequencies[a])
-    let maxNum = uniqGenres.length > 3 ? 3 : uniqGenres.length
-    return uniqGenres.slice(0, maxNum).join("%2C").split(" ").join("%20")
+    let maxNum = uniqGenres.length > 2 ? 2 : uniqGenres.length
+    return uniqGenres.slice(0, maxNum).join(",").split(" ").join("%20")
 }
 
 const retrieveOptions = async (song) => {
@@ -61,10 +61,59 @@ const elaborateOptions = (options, optionsStats) => {
   let optionsStatsFiltered = {}
   let keys = Object.keys(options)
   let optionsString = []
+  console.log(optionsStats)
   for (let i = 0; i < keys.length; i++)
     if (options[keys[i]])
+      /*switch (options[keys[i]]) {
+            case duration_ms:
+              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
+              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+              break;
+            case key:
+              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
+              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+              break;
+            case mode:
+              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
+              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+              break;
+            case tempo:
+              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
+              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+              break;
+            case acousticness:
+              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
+              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+              break;
+            case danceability:
+              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
+              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+              break;
+            case energy:
+              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
+              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+              break;
+            case liveness:
+              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
+              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+              break;
+            case loudness:
+              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
+              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+              break;
+            case valence:
+              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
+              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+              break;
+            default: break;
+      }*/
       optionsString.push("target_"+keys[i]+"="+optionsStats[keys[i]])
   return optionsString.join("&")
+}
+
+const elaborateArtists = (artists) => {
+  let realArtists = artists.length > 2 ? artists.slice(2) : artists
+  return realArtists.map((artist) => artist.id).join(",")
 }
 
 const retrieveSongs = async (song, options, genres, artists) => {
@@ -74,6 +123,7 @@ const retrieveSongs = async (song, options, genres, artists) => {
     st += "&seed_genres=" + genres
     st += "&seed_tracks=" + song
     st += "&" + options
+    console.log(st)
     fetch(st,
       {
         headers: {
@@ -90,7 +140,7 @@ const retrieveSongs = async (song, options, genres, artists) => {
   return await songRetrieve
 };
 
-export default async function retrievePlaylist(song, options, selectedOptions) {
+export default async function retrievePlaylist(song, selectedOptions) {
   const songListRetrieve = new Promise((resolve, reject) => {
     // Prima ottieni il genere dell'artista
     // Poi le caratteristiche della canzone
@@ -101,11 +151,12 @@ export default async function retrievePlaylist(song, options, selectedOptions) {
       if ("error" in genres_raw)
         resolve(genres_raw)
       genres = elaborateGenres(genres_raw)
-      retrieveOptions(song, options).then((options_raw) => {
+      retrieveOptions(song).then((options_raw) => {
         if ("error" in options_raw)
           resolve(options_raw)
         optionsStats = elaborateOptions(selectedOptions, options_raw)
-        retrieveSongs(song.id, optionsStats, genres, song.artists.map((artist) => artist.id).join("%2C")).then((resp) => {
+        let artists = elaborateArtists(song.artists)
+        retrieveSongs(song.id, optionsStats, genres, artists).then((resp) => {
           resolve(resp)
         })
       })

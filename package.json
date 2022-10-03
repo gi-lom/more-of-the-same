@@ -15,12 +15,14 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@fontsource/poppins": "^4.5.9",
     "@fontsource/raleway": "^4.5.10",
     "gatsby": "^4.21.1",
     "gatsby-plugin-load-script": "^1.1.0",
     "gatsby-plugin-sass": "^5.23.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-native-image-colors": "^1.5.1",
     "react-router-dom": "^6.3.0",
     "react-spotify-web-playback": "^0.10.0",
     "sass": "^1.54.9"

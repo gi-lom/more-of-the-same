@@ -5,7 +5,16 @@ import songSearch from "../modules/song-search";
 import handleError from "../modules/error";
 
 import SearchResults from "./elements/searchResults";
-import Footer from "./elements/header";
+import Header from "./elements/header";
+
+import '../style/pages/search.scss';
+
+import searchIcon from "../images/search.svg"
+
+
+import "@fontsource/poppins"
+import "@fontsource/poppins/500.css"
+import "@fontsource/poppins/700.css"
 
 class Search extends React.Component {
 
@@ -63,19 +72,18 @@ class Search extends React.Component {
 
     render() {
         return(
-            <main>
+            <div id="search">
                 <title>More Of The Same</title>
   
+                <Header />
+
                 <div id="search-bar">
                     <input type="text" value={this.state.value} onChange={this.handleChange} onKeyDown={this.handleKeyDown} placeholder="Type a song, an artist, or an album's name" />
-                    <button onClick={(this.handleSubmit)}> SEARCH </button>
                 </div>
 
                 <SearchResults songs={this.state.search} value={this.state.value} changeOffset={this.changeOffset} toConfig={this.toConfig} />
 
-                <Footer />
-
-            </main>
+            </div>
         )
     }
   

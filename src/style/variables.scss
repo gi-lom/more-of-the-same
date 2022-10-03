@@ -1,12 +1,21 @@
-$text-font: "Raleway", sans-serif;
+$text-font: "Poppins", sans-serif;
 
 $background-color: #FEFFFF;
-$title-color: #FA5056;
+$title-color: #4C4C7A;
+$title-color-2: #E6E6FA;
+$title-color-3: #7B7BC7;
 $text-color: black;
-$box-shadow-color: #4C4C7A;
-$button-color: #50FA7D;
+$box-shadow-color: #B7B7C7;
 $disclaimer-size: 80%;
-$button-height: 175px;
+$button-height: 50px;
 $button-width: 175px;
+$border-radius: 10px;
+$box-shadow: -10px -10px 30px #fff, 10px 10px 30px #aeaec040;
+$box-shadow-lite: -2.5px -2.5px 7.5px #fff, 2.5px 2.5px 7.5px #aeaec040;
+$box-shadow-hover: inset -10px -10px 10px #ffffff70, inset 10px 10px 10px #aeaec020;
+$background-color-svg: invert(31%) sepia(12%) saturate(1647%) hue-rotate(201deg) brightness(93%) contrast(93%);
+$title-color-svg: invert(30%) sepia(4%) saturate(5431%) hue-rotate(202deg) brightness(93%) contrast(86%);
+$title-color-3-svg: invert(77%) sepia(40%) saturate(6427%) hue-rotate(206deg) brightness(83%) contrast(83%);
+$grey-svg: invert(79%) sepia(8%) saturate(345%) hue-rotate(202deg) brightness(94%) contrast(87%);
 
 $bar-duration: 1s;

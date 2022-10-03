@@ -1,0 +1,175 @@
+@use '../_base';
+@use '../mixins.scss' as mixins;
+@use '../variables.scss' as v;
+
+#selected-song {
+  width: 96%;
+  height: 100px;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 50px;
+
+  #selected-song-details {
+    float: left;
+    width: 62.5%;
+
+    #selected-song-image {
+
+      img {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        z-index: 1;
+      }
+    }
+
+    #selected-song-name {
+      position: relative;
+      text-align: left;
+      margin-left: 120px;
+      color: v.$title-color;
+      width: auto;
+
+      #selected-song-name-title {
+        font-weight: bold;
+        font-size: 22px;
+        line-height: 1.25;
+        margin-bottom: 5px;
+      }
+
+      #selected-song-name-artist {
+        margin-bottom: 10px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  #play-on-spotify {
+    height: 38px;
+    position: relative;
+
+    button {
+      @include mixins.small-button(175px);
+      position: absolute;
+      bottom: 0;
+      left: 100px;
+      float: left;
+    }
+  }
+}
+
+#selected-song-options-list {
+  color: v.$title-color;
+  position: relative;
+  top: 30px;
+
+  #selected-song-options-title {
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+  }
+
+  button {
+    width: auto;
+    margin-top: 25px;
+    margin-bottom: 100px;
+  }
+
+  #selected-song-options {
+    margin-bottom: 25px;
+
+    label {
+      display: block;
+      width: 600px;
+      margin: auto;
+      text-align: left;
+      margin-bottom: 30px;
+      min-height: 75px;
+
+      img {
+        width: 25px;
+        height: 25px;
+        position: relative;
+        top: 5px;
+        filter: invert(79%) sepia(8%) saturate(345%) hue-rotate(202deg) brightness(94%) contrast(87%);
+      }
+
+      .checkbox-container {
+        float: right;
+        position: relative;
+        top: 8.5px;
+        width: 39.5px;
+        height: 15px;
+        padding: 2.5px;
+
+        input {
+          float: right;
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: transparent;
+          transition: .4s;
+          border-radius: 34px;
+          width: 45px;
+          box-shadow: v.$box-shadow-lite;
+        }
+
+        .slider:before {
+          position: absolute;
+          content: "";
+          height: 13px;
+          width: 13px;
+          left: 4px;
+          bottom: 3.5px;
+          background-color: #9baacf;
+          transition: .4s;
+          border-radius: 50%;
+        }
+
+        input:checked + .slider {
+          background-color: v.$title-color-2;
+        }
+        
+        input:checked + .slider:before {
+          transform: translateX(23px);
+        }
+      }
+
+      .info-container {
+        font-size: 10px;
+        width: 85%;
+        color: v.$box-shadow-color;
+      }
+    }
+  }
+
+
+}
+
+@media screen and (max-width: 933px) {
+  #selected-song {
+    #selected-song-details {
+      width: 100%;
+    }
+
+  }
+
+  #selected-song-options-list {
+
+    #selected-song-options {
+
+      label {
+        width: 90%;
+      }
+    }
+  }
+}
