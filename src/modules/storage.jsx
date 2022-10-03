@@ -9,7 +9,8 @@ export default function setLocalStorage() {
             let tokenDictValue = tokenArray[i].split('=');
             let key = tokenDictValue[0];
             let value = key === "expires_in" ? parseInt(tokenDictValue[1]) + currentTime : tokenDictValue[1];
-            localStorage.setItem(key, value);
+            if (typeof window !== "undefined" && window)
+                localStorage.setItem(key, value);
         }
     }   
 };

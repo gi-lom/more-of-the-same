@@ -9,7 +9,7 @@ class Config extends React.Component {
 
     constructor(props) {
         super(props);
-        let options = JSON.parse(sessionStorage.getItem("options"))
+        let options = typeof window === "undefined" ? null : JSON.parse(sessionStorage.getItem("options"))
         this.state = {
             duration_ms: options === null ? false : options.duration_ms,
             key: options === null ? false : options.key,
@@ -43,7 +43,7 @@ class Config extends React.Component {
     render() {
         console.log("aa")
         console.log(this.state)
-        const song = JSON.parse(sessionStorage.getItem("song"))
+        const song = typeof window === "undefined" ? null : JSON.parse(sessionStorage.getItem("song"))
         return (
             <main>
                 <title>More Of The Same</title>
@@ -198,7 +198,7 @@ class Config extends React.Component {
 
                     <div id="playlist-button">
                         <button onClick={this.preparePlayback}>
-                            <Link to={"/result"} onClick={() => {sessionStorage.setItem("options", JSON.stringify(this.state))}} style={{textDecoration: "none", color: "#4C4C7A"}}>
+                            <Link to={"/result"} onClick={() => {if (typeof window !== "undefined") sessionStorage.setItem("options", JSON.stringify(this.state))}} style={{textDecoration: "none", color: "#4C4C7A"}}>
                                 Make my playlist
                             </Link>
                         </button>

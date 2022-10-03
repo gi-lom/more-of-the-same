@@ -22,10 +22,9 @@ class Result extends React.Component {
   }
 
   componentDidMount() {
-    retrievePlaylist(
-      JSON.parse(sessionStorage.getItem("song")),
-      JSON.parse(sessionStorage.getItem("options")),
-    ).then((playlist) => {
+    let songRetrieve = typeof window === "undefined" || !window ? null : JSON.parse(sessionStorage.getItem("song"))
+    let optionsRetrieve = typeof window === "undefined" || !window ? null : JSON.parse(sessionStorage.getItem("options"))
+    retrievePlaylist(songRetrieve, optionsRetrieve).then((playlist) => {
       if ("error" in playlist) { handleError(); }
       else {
         if (playlist === null || playlist.tracks.length === 0) {
