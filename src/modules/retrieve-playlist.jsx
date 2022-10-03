@@ -61,53 +61,53 @@ const elaborateOptions = (options, optionsStats) => {
   let optionsStatsFiltered = {}
   let keys = Object.keys(options)
   let optionsString = []
-  console.log(optionsStats)
   for (let i = 0; i < keys.length; i++)
     if (options[keys[i]])
-      /*switch (options[keys[i]]) {
-            case duration_ms:
-              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
-              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+      // sono tutti int
+      switch (options[keys[i]]) {
+            case "duration_ms":
+              optionsString.push("min_"+keys[i]+"="+(optionsStats[keys[i]] - 5000));
+              optionsString.push("max_"+keys[i]+"="+(optionsStats[keys[i]] + 5000));
               break;
-            case key:
-              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
-              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+            case "key":
+              optionsString.push("min_"+keys[i]+"="+(optionsStats[keys[i]]));
+              optionsString.push("max_"+keys[i]+"="+(optionsStats[keys[i]]));
               break;
-            case mode:
-              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
-              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+            case "mode":
+              optionsString.push("min_"+keys[i]+"="+(optionsStats[keys[i]]));
+              optionsString.push("max_"+keys[i]+"="+(optionsStats[keys[i]]));
               break;
-            case tempo:
-              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
-              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+            case "tempo":
+              optionsString.push("min_"+keys[i]+"="+(optionsStats[keys[i]] - optionsStats[keys[i]]*5.0/100.0));
+              optionsString.push("max_"+keys[i]+"="+(optionsStats[keys[i]] + optionsStats[keys[i]]*5.0/100.0));
               break;
-            case acousticness:
-              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
-              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+            case "acousticness":
+              optionsString.push("min_"+keys[i]+"="+(optionsStats[keys[i]] - 0.05));
+              optionsString.push("max_"+keys[i]+"="+(optionsStats[keys[i]] + 0.05));
               break;
-            case danceability:
-              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
-              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+            case "danceability":
+              optionsString.push("min_"+keys[i]+"="+(optionsStats[keys[i]] - 0.05));
+              optionsString.push("max_"+keys[i]+"="+(optionsStats[keys[i]] + 0.05));
               break;
-            case energy:
-              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
-              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+            case "energy":
+              optionsString.push("min_"+keys[i]+"="+(optionsStats[keys[i]] - 0.05));
+              optionsString.push("max_"+keys[i]+"="+(optionsStats[keys[i]] + 0.05));
               break;
-            case liveness:
-              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
-              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+            case "liveness":
+              optionsString.push("min_"+keys[i]+"="+(optionsStats[keys[i]] - 0.05));
+              optionsString.push("max_"+keys[i]+"="+(optionsStats[keys[i]] + 0.05));
               break;
-            case loudness:
-              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
-              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+            case "loudness":
+              optionsString.push("min_"+keys[i]+"="+(optionsStats[keys[i]] - 3.0));
+              optionsString.push("max_"+keys[i]+"="+(optionsStats[keys[i]] + 3.0));
               break;
-            case valence:
-              optionsString.push("min_"+keys[i]+"="+optionsStats[keys[i]]);
-              optionsString.push("max_"+keys[i]+"="+optionsStats[keys[i]]);
+            case "valence":
+              optionsString.push("min_"+keys[i]+"="+(optionsStats[keys[i]] - 0.05));
+              optionsString.push("max_"+keys[i]+"="+(optionsStats[keys[i]] + 0.05));
               break;
             default: break;
-      }*/
-      optionsString.push("target_"+keys[i]+"="+optionsStats[keys[i]])
+      }
+      // optionsString.push("target_"+keys[i]+"="+optionsStats[keys[i]])
   return optionsString.join("&")
 }
 

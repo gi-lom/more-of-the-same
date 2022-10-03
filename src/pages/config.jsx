@@ -9,7 +9,24 @@ class Config extends React.Component {
 
     constructor(props) {
         super(props);
+        let options = JSON.parse(sessionStorage.getItem("options"))
         this.state = {
+            duration_ms: options === null ? false : options.duration_ms,
+            key: options === null ? false : options.key,
+            mode: options === null ? false : options.mode,
+            tempo: options === null ? false : options.tempo,
+            acousticness: options === null ? false : options.acousticness,
+            danceability: options === null ? false : options.danceability,
+            energy: options === null ? false : options.energy,
+            liveness: options === null ? false : options.liveness,
+            loudness: options === null ? false : options.loudness,
+            valence: options === null ? false : options.valence,
+        }
+        this.optionReset = this.optionReset.bind(this)
+    }
+
+    optionReset() {
+        this.setState({
             duration_ms: false,
             key: false,
             mode: false,
@@ -20,18 +37,13 @@ class Config extends React.Component {
             liveness: false,
             loudness: false,
             valence: false
-        }
+        })
     }
 
     render() {
-        const song = this.props.location.state.song ? this.props.location.state.song : null
-        if (song === null)
-            return (
-            <div>
-                <title>More Of The Same</title>
-                <Header />
-            </div>
-        )
+        console.log("aa")
+        console.log(this.state)
+        const song = JSON.parse(sessionStorage.getItem("song"))
         return (
             <main>
                 <title>More Of The Same</title>
@@ -51,9 +63,9 @@ class Config extends React.Component {
                                 {song.artists.map((el) => el.name).join(", ")}
                             </div>
                         </div>
-                        <div id="play-on-spotify">
+                        {/*<div id="play-on-spotify">
                             <button onClick={() => window.open(song.external_urls.spotify, "_blank").focus()}>Play on Spotify</button>
-                        </div>
+                        </div>*/}
                     </div>
                 </div>
 
@@ -65,7 +77,7 @@ class Config extends React.Component {
                         <label for="selected-song-option-duration_ms">
                             Duration
                             <div className="checkbox-container">
-                                <input type="checkbox" onChange = {() => {this.setState({duration_ms: !this.state.duration_ms})}} value="" className="selected-song-option" id="selected-song-option-duration_ms" />
+                                <input type="checkbox" onChange = {() => {this.setState({duration_ms: !this.state.duration_ms})}} value="" className="selected-song-option" id="selected-song-option-duration_ms" checked={this.state.duration_ms} />
                                 <span class="slider"></span>
                             </div>
                             <div className="info-container">
@@ -77,7 +89,7 @@ class Config extends React.Component {
                         <label for="selected-song-option-key">
                             Key
                             <div className="checkbox-container">
-                                <input type="checkbox" onChange = {() => {this.setState({key: !this.state.key})}} className="selected-song-option" id="selected-song-option-key" />
+                                <input type="checkbox" onChange = {() => {this.setState({key: !this.state.key})}} className="selected-song-option" id="selected-song-option-key" checked={this.state.key} />
                                 <span class="slider"></span>
                             </div>
                             <div className="info-container">
@@ -89,7 +101,7 @@ class Config extends React.Component {
                         <label for="selected-song-option-mode">
                             Mode
                             <div className="checkbox-container">
-                                <input type="checkbox" onChange = {() => {this.setState({mode: !this.state.mode})}} className="selected-song-option" id="selected-song-option-mode" />
+                                <input type="checkbox" onChange = {() => {this.setState({mode: !this.state.mode})}} className="selected-song-option" id="selected-song-option-mode" checked={this.state.mode} />
                                 <span class="slider"></span>
                             </div>
                             <div className="info-container">
@@ -101,7 +113,7 @@ class Config extends React.Component {
                         <label for="selected-song-option-tempo">
                             Speed
                             <div className="checkbox-container">
-                                <input type="checkbox" onChange = {() => {this.setState({tempo: !this.state.tempo})}} className="selected-song-option" id="selected-song-option-tempo" />
+                                <input type="checkbox" onChange = {() => {this.setState({tempo: !this.state.tempo})}} className="selected-song-option" id="selected-song-option-tempo" checked={this.state.tempo} />
                                 <span class="slider"></span>
                             </div>
                             <div className="info-container">
@@ -113,7 +125,7 @@ class Config extends React.Component {
                         <label for="selected-song-option-acousticness">
                             Acousticness
                             <div className="checkbox-container">
-                                <input type="checkbox" onChange = {() => {this.setState({acousticness: !this.state.acousticness})}} className="selected-song-option" id="selected-song-option-acousticness" />
+                                <input type="checkbox" onChange = {() => {this.setState({acousticness: !this.state.acousticness})}} className="selected-song-option" id="selected-song-option-acousticness" checked={this.state.acousticness} />
                                 <span class="slider"></span>
                             </div>
                             <div className="info-container">
@@ -125,7 +137,7 @@ class Config extends React.Component {
                         <label for="selected-song-option-danceability">
                             Danceability
                             <div className="checkbox-container">
-                                <input type="checkbox" onChange = {() => {this.setState({danceability: !this.state.danceability})}} className="selected-song-option" id="selected-song-option-danceability" />
+                                <input type="checkbox" onChange = {() => {this.setState({danceability: !this.state.danceability})}} className="selected-song-option" id="selected-song-option-danceability" checked={this.state.danceability} />
                                 <span class="slider"></span>
                             </div>
                             <div className="info-container">
@@ -137,7 +149,7 @@ class Config extends React.Component {
                         <label for="selected-song-option-energy">
                             Energy
                             <div className="checkbox-container">
-                                <input type="checkbox" onChange = {() => {this.setState({energy: !this.state.energy})}} className="selected-song-option" id="selected-song-option-energy" />
+                                <input type="checkbox" onChange = {() => {this.setState({energy: !this.state.energy})}} className="selected-song-option" id="selected-song-option-energy" checked={this.state.energy} />
                                 <span class="slider"></span>
                             </div>
                             <div className="info-container">
@@ -149,7 +161,7 @@ class Config extends React.Component {
                         <label for="selected-song-option-liveness">
                             Liveness
                             <div className="checkbox-container">
-                                <input type="checkbox" onChange = {() => {this.setState({liveness: !this.state.liveness})}} className="selected-song-option" id="selected-song-option-liveness" />
+                                <input type="checkbox" onChange = {() => {this.setState({liveness: !this.state.liveness})}} className="selected-song-option" id="selected-song-option-liveness" checked={this.state.liveness} />
                                 <span class="slider"></span>
                             </div>
                             <div className="info-container">
@@ -161,7 +173,7 @@ class Config extends React.Component {
                         <label for="selected-song-option-loudness">
                             Loudness
                             <div className="checkbox-container">
-                                <input type="checkbox" onChange = {() => {this.setState({loudness: !this.state.loudness})}} className="selected-song-option" id="selected-song-option-loudness" />
+                                <input type="checkbox" onChange = {() => {this.setState({loudness: !this.state.loudness})}} className="selected-song-option" id="selected-song-option-loudness" checked={this.state.loudness} />
                                 <span class="slider"></span>
                             </div>
                             <div className="info-container">
@@ -173,7 +185,7 @@ class Config extends React.Component {
                         <label for="selected-song-option-valence">
                             Emotion
                             <div className="checkbox-container">
-                                <input type="checkbox" onChange = {() => {this.setState({valence: !this.state.valence})}} className="selected-song-option" id="selected-song-option-valence" />
+                                <input type="checkbox" onChange = {() => {this.setState({valence: !this.state.valence})}} className="selected-song-option" id="selected-song-option-valence" checked={this.state.valence} />
                                 <span class="slider"></span>
                             </div>
                             <div className="info-container">
@@ -184,11 +196,18 @@ class Config extends React.Component {
                         </label>
                     </div>
 
-                    <button onClick={this.preparePlayback}>
-                        <Link to={"/result"} state={{song: song, options: this.state}} style={{textDecoration: "none", color: "#4C4C7A"}}>
-                            Make my playlist
-                        </Link>
-                    </button>
+                    <div id="playlist-button">
+                        <button onClick={this.preparePlayback}>
+                            <Link to={"/result"} onClick={() => {sessionStorage.setItem("options", JSON.stringify(this.state))}} style={{textDecoration: "none", color: "#4C4C7A"}}>
+                                Make my playlist
+                            </Link>
+                        </button>
+                    </div>
+                    <div id="deselect-button">
+                        <button onClick={this.optionReset}>
+                            Deselect all
+                        </button>
+                    </div>
                 </div>
 
             </main>

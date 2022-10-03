@@ -23,7 +23,7 @@ class Search extends React.Component {
         this.state = {
             value: "",
             offset: 0,
-            search: []
+            search: sessionStorage.getItem("search") === null ? [] : JSON.parse(sessionStorage.getItem("search"))
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -65,6 +65,7 @@ class Search extends React.Component {
                     if ('error' in songs)
                         handleError()
                     this.setState({search: songs})
+                    sessionStorage.setItem("search", JSON.stringify(songs))
                 }
             });
         }

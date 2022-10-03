@@ -23,9 +23,8 @@ class Result extends React.Component {
 
   componentDidMount() {
     retrievePlaylist(
-      this.props.location.state.song,
-      this.props.location.state.options,
-      this.props.location.state.fullOptions,
+      JSON.parse(sessionStorage.getItem("song")),
+      JSON.parse(sessionStorage.getItem("options")),
     ).then((playlist) => {
       if ("error" in playlist) { handleError(); }
       else {
@@ -38,7 +37,6 @@ class Result extends React.Component {
           getDevices().then((resp) => {
             if ("error" in playlist) handleError();
             else {
-              console.log(playlist)
               this.setState({ devices: resp.devices });
               this.setState({
                 songs: playlist.tracks,
