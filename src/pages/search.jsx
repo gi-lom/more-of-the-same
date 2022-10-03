@@ -73,7 +73,7 @@ class Search extends React.Component {
     }
 
     render() {
-        let SearchResults = typeof window === "undefined" || !window || this.state.search == [] ? <div /> : <SearchResults songs={this.state.search} value={this.state.value} changeOffset={this.changeOffset} toConfig={this.toConfig} />
+        // let SearchResults = typeof window === "undefined" || !window || this.state.search == [] ? <div /> : <SearchResults songs={this.state.search} value={this.state.value} changeOffset={this.changeOffset} toConfig={this.toConfig} />
         return(
             <div id="search">
                 <title>More Of The Same</title>
@@ -84,7 +84,7 @@ class Search extends React.Component {
                     <input type="text" value={this.state.value} onChange={this.handleChange} onKeyDown={this.handleKeyDown} placeholder="Type a song, an artist, or an album's name" />
                 </div>
 
-                {SearchResults}
+                <SearchResults songs={this.state.search} value={this.state.value} changeOffset={this.changeOffset} toConfig={this.toConfig} />
 
             </div>
         )
