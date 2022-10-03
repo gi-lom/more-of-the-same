@@ -73,7 +73,7 @@ class Search extends React.Component {
     }
 
     render() {
-        let SearchResults = this.state.search == [] ? <div /> : <SearchResults songs={this.state.search} value={this.state.value} changeOffset={this.changeOffset} toConfig={this.toConfig} />
+        let SearchResults = typeof window === "undefined" || !window || this.state.search == [] ? <div /> : <SearchResults songs={this.state.search} value={this.state.value} changeOffset={this.changeOffset} toConfig={this.toConfig} />
         return(
             <div id="search">
                 <title>More Of The Same</title>
