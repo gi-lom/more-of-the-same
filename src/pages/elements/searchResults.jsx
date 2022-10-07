@@ -84,10 +84,23 @@ const SearchResults = (props) => {
       if (songs.tracks.items.length == 0)
         return (
           <>
-            <div className="generic-search-background">
+            <motion.div
+            initial={{ opacity: 0, x: 0, y: 5, ease: "easeOut" }}
+            animate={
+              props.transitionStatus === "exiting"
+                ? { opacity: 0, x: 0, y: 5 }
+                : { opacity: 1, x: 0, y: 0 }
+            }
+            transition={
+              props.transitionStatus === "exiting"
+                ? { duration: 1.25 }
+                : { duration: 1.25 }
+            }
+              className="generic-search-background"
+            >
               <img src={SearchNofound} />
               <div className="generic-search-title">Nothing found</div>
-            </div>
+            </motion.div>
           </>
         );
       else {

@@ -16,7 +16,6 @@ export default function spotifyGetAccessToken () {
     // authorize user and get access token
     const SPOTIFY_CLIENT_ID = "2a60345a24c741afaf8259f0d8545686";
     const scopes = [
-      "user-read-currently-playing",
       "user-modify-playback-state",
       "user-read-playback-state"
     ];
