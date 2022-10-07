@@ -77,7 +77,9 @@ class Search extends React.Component {
   render() {
     // let SearchResults = typeof window === "undefined" || !window || this.state.search == [] ? <div /> : <SearchResults songs={this.state.search} value={this.state.value} changeOffset={this.changeOffset} toConfig={this.toConfig} />
 
-    window.scrollTo({top: 0, left: 0, behavior: "smooth"})
+    if (typeof window !== "undefined" && window)
+      window.scrollTo({top: 0, left: 0, behavior: "smooth"})
+    
     return (
       <main>
         <title>More Of The Same</title>
