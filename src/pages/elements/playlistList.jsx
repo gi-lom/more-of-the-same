@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const PlaylistList = (props) => {
   const list = props.list;
@@ -7,7 +8,20 @@ const PlaylistList = (props) => {
   if (list !== undefined)
     for (let i = 0; i < list.length; i++)
       songs.push(
-        <div className="playlist-songs-list-el">
+        <motion.div
+          className="playlist-songs-list-el"
+          initial={{ opacity: 0, x: window.innerWidth, y: 0, ease: "easeOut" }}
+          animate={
+            props.transitionSt === "exiting"
+              ? { opacity: 1, x: -window.innerWidth, y: 0 }
+              : { opacity: 1, x: 0, y: 0 }
+          }
+          transition={
+            props.transitionSt === "exiting"
+              ? { duration: 2, delay: 0.05 * i }
+              : { duration: 1.25, delay: 0.5 + 0.05 * i }
+          }
+        >
           <div className="playlist-songs-list-el-details">
             <div className="playlist-songs-list-img">
               <img src={list[i].album.images[2].url} />
@@ -31,7 +45,7 @@ const PlaylistList = (props) => {
               Play on Spotify{" "}
             </button>
           </div>
-        </div>
+        </motion.div>
       );
 
   return <div id="playlist-songs-list">{songs}</div>;

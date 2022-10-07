@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 import handleError from "../../modules/error";
 import getSongToPlay from "../../modules/song-play";
@@ -24,7 +25,7 @@ const prepareDevice = (deviceId, songs) => {
   });
 };
 
-const DeviceButtons = (devices, songs) => {
+const DeviceButtons = (devices, songs, transitionSt) => {
   let buttonList = [];
   if (devices !== undefined)
     for (let i = 0; i < devices.length; i++) {
@@ -59,9 +60,20 @@ const DeviceButtons = (devices, songs) => {
           break;
       }
       buttonList.push(
-        <button
+        <motion.button
           onClick={() => prepareDevice(devices[i].id, songs)}
           className="device-button"
+          initial={{ opacity: 0, x: 0, y: 5, ease: "easeOut" }}
+          animate={
+            transitionSt === "exiting"
+              ? { opacity: 1, x: 0, y: 0 }
+              : { opacity: 1, x: 0, y: 0 }
+          }
+          transition={
+            transitionSt === "exiting"
+              ? { duration: 0.5, ease: "easeIn", delay: 0.25 * i }
+              : { duration: 0.5, ease: "easeOut", delay: 0.25 * i }
+          }
         >
           <div className="image-container">
             <img src={img} className="svg not-hover" />
@@ -71,23 +83,37 @@ const DeviceButtons = (devices, songs) => {
             <div className="device-type"> {devices[i].type} </div>
             <div className="device-name"> {devices[i].name} </div>
           </div>
-        </button>
+        </motion.button>
       );
     }
+  console.log(buttonList)
   return <div id="devices-list">{buttonList}</div>;
 };
 
 const Devices = (props) => {
-  let deviceButtons = DeviceButtons(props.devices, props.songs);
+  let deviceButtons = DeviceButtons(props.devices, props.songs, props.transitionSt);
   return (
-    <div id="devices">
+    <motion.div
+      id="devices"
+      initial={{ opacity: 0, x: 0, y: 5, ease: "easeOut" }}
+      animate={
+        props.transitionSt === "exiting"
+          ? { opacity: 1, x: 0, y: 0 }
+          : { opacity: 1, x: 0, y: 0 }
+      }
+      transition={
+        props.transitionSt === "exiting"
+          ? { duration: 1, ease: "easeIn" }
+          : { duration: 1 }
+      }
+    >
       <div id="devices-title">
         Select a device to start playing. <br />
         If you don't see the one you want to use, open a Spotify session there
         and refresh.
       </div>
       {deviceButtons}
-    </div>
+    </motion.div>
   );
 };
 

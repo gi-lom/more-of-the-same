@@ -2,6 +2,11 @@
 @use '../mixins.scss' as mixins;
 @use '../variables.scss' as v;
 
+main {
+  height: auto;
+  overflow: hidden;
+}
+
 #selected-song {
   width: 96%;
   height: 100px;
@@ -61,12 +66,12 @@
 #selected-song-options-list {
   color: v.$title-color;
   position: relative;
-  top: 30px;
+  top: 15px;
 
   #selected-song-options-title {
     font-weight: bold;
     letter-spacing: 1px;
-    margin-bottom: 30px;
+    margin-bottom: 60px;
   }
 
   button {
