@@ -4,12 +4,13 @@ import TransitionLink, { TransitionState } from "gatsby-plugin-transition-link";
 
 import spotifyGetAccessToken from "./../modules/token.jsx";
 
+import Metadata from "./elements/metadata.jsx";
 import Footer from "./elements/footer.jsx";
 
 import "../style/pages/index.scss";
 
-import indexHead from "../images/index-head-transparent.png";
-import spotifyLogo from "../images/spotify.png";
+import indexHead from "../images/index-head-transparent.webp";
+import spotifyLogo from "../images/spotify.webp";
 
 import "@fontsource/poppins";
 import "@fontsource/poppins/500.css";
@@ -24,7 +25,7 @@ class MainPart extends React.Component {
 
     return (
       <div id="index">
-        <title>More Of The Same</title>
+        <Metadata props={"nofollow"} />
 
         <TransitionState>
           {({ transitionStatus, entry, exit }) => (
@@ -48,7 +49,7 @@ class MainPart extends React.Component {
             >
               <div id="main">
                 <div id="main-image">
-                  <img src={indexHead} id="index-head" />
+                  <img src={indexHead} alt={""} id="index-head" />
                 </div>
 
                 <div id="main-part">
@@ -63,7 +64,7 @@ class MainPart extends React.Component {
                       <div id="header-title-logo">
                         <div id="header-title-logo-title">Powered by</div>
                         <div id="header-title-logo-container">
-                          <img src={spotifyLogo} />
+                          <img src={spotifyLogo} alt={"Spotify"} />
                         </div>
                       </div>
                     </div>

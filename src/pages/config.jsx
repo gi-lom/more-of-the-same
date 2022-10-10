@@ -78,7 +78,7 @@ class Config extends React.Component {
 
     return (
       <main>
-        <title>More Of The Same</title>
+        <Metadata props={"none"} />
 
         <Header />
 

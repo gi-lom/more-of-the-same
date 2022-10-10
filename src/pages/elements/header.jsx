@@ -1,7 +1,7 @@
 import { TransitionLink } from "gatsby-plugin-transition-link/components/TransitionLink";
 import React from "react";
 
-import spotifyLogo from "../../images/spotify.png";
+import spotifyLogo from "../../images/spotify.webp";
 
 const logout = () => {
   if (
