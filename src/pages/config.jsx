@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import TransitionLink, { TransitionState } from "gatsby-plugin-transition-link";
 
+import Metadata from "./elements/metadata.jsx";
 import Header from "./elements/header";
 
 import "../style/pages/config.scss";

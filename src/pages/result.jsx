@@ -6,6 +6,7 @@ import getDevices from "../modules/devices";
 import retrievePlaylist from "../modules/retrieve-playlist";
 import handleError from "../modules/error";
 
+import Metadata from "./elements/metadata.jsx";
 import Header from "./elements/header";
 import Devices from "./elements/devices";
 import PlaylistList from "./elements/playlistList";

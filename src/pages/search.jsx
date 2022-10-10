@@ -6,12 +6,11 @@ import setLocalStorage from "../modules/storage";
 import songSearch from "../modules/song-search";
 import handleError from "../modules/error";
 
+import Metadata from "./elements/metadata.jsx";
 import SearchResults from "./elements/searchResults";
 import Header from "./elements/header";
 
 import "../style/pages/search.scss";
-
-import searchIcon from "../images/search.svg";
 
 import "@fontsource/poppins";
 import "@fontsource/poppins/500.css";
