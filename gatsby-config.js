@@ -16,14 +16,7 @@ module.exports = {
         host: "https://moreofthesame.gatsbyjs.io",
         sitemap: "https://moreofthesame.gatsbyjs.io/sitemap.xml",
         resolveEnv: () => process.env.GATSBY_ENV,
-        env: {
-          development: {
-            policy: [{ userAgent: '*', disallow: ['/'] }]
-          },
-          production: {
-            policy: [{ userAgent: '*', allow: '/' }]
-          }
-        }
+        policy: [{ userAgent: '*', allow: '/' }]
       },
     },
     {
