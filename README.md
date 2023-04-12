@@ -1,7 +1,7 @@
 # More of the Same
 ## Select a song. Play songs that sound just like it.
 
-### [Access to the website here](moreofthesame.gatsbyjs.io)
+### Website: moreofthesame.gatsbyjs.io
 
 This website lets you select a song and build a playlist based on it on Spotify. You can build it according to the following values:
 
